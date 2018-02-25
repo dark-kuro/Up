@@ -6,7 +6,7 @@ from os import path
 def main():
 	parse = Api.args()
 	args = parse.parse_args()
-	args = parse.parse_args(['..', '--noauth_local_webserver'])
+	# args = parse.parse_args(['..', '--noauth_local_webserver'])
 	if not path.isdir(args.path):raise
 
 	api = Api(flags=args)
