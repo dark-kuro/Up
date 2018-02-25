@@ -3,12 +3,6 @@ from api import Api
 from pprint import pprint
 from os import path
 
-from requests import Request
-
-print(Request)
-
-exit()
-
 def main():
 	parse = Api.args()
 	args = parse.parse_args()
@@ -16,9 +10,13 @@ def main():
 	if not path.isdir(args.path):raise
 
 	api = Api(flags=args)
-	# for i in Api.walk(args.path):
-		# print(i)
-	print(api.dropbox())
+	foo = api.foo()
+	for i in Api.walk(args.path):
+		print(i)
+		a = Api.ul(foo, i)
+		print(a)
+		break
+	# print(api.dropbox())
 
 
 

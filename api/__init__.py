@@ -1,6 +1,10 @@
 from .api import BaseApi
 from .model import (Feed, Doc)
 
+from .requests_futures.sessions import FuturesSession
+
+
+
 try:
     from urllib.parse import urljoin
 except ImportError:
@@ -63,3 +67,19 @@ class Api(BaseApi):
         except:
             self.up_media = self._dropbox()
             return self.dropbox()
+
+    def default_album(self):
+        return self.api_join('feed/api/user/default/albumid/default')
+
+    @classmethod
+    def ul(self, api, name):
+        return api.post(api.prefix, **self.data(name))
+
+    def up(self, name):
+        self.api.prefix = self.default_album()
+        return self.ul(self.api, name)
+
+    def foo(self, num=5):
+        f = FuturesSession(max_workers=num, session=self.api)
+        f.prefix = self.default_album()
+        return f
