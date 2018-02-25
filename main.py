@@ -3,6 +3,11 @@ from api import Api
 from pprint import pprint
 from os import path
 
+from requests import Request
+
+print(Request)
+
+exit()
 
 def main():
 	parse = Api.args()
