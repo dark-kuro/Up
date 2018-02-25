@@ -11,6 +11,7 @@ from google.oauth2.credentials import Credentials
 
 import json
 from os import path
+import sys
 
 class UploadWithProgress(object):
     def __init__(self, filename, chunksize=1 << 13):
@@ -26,11 +27,11 @@ class UploadWithProgress(object):
             while True:
                 data = file.read(self.chunksize)
                 if not data:
-                    print()
+                    sys.stderr.write("\n")
                     break
                 self.readsofar += len(data)
                 percent = self.readsofar * 1e2 / self.totalsize
-                print('\r{percent:3.0f}%'.format(percent=percent), flush=True)
+                sys.stderr.write('\r{percent:3.0f}%'.format(percent=percent), flush=True)
                 yield data
 
     def __len__(self):
