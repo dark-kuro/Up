@@ -7,10 +7,13 @@ from os import path
 def main():
 	parse = Api.args()
 	args = parse.parse_args()
+	args = parse.parse_args(['..', '--noauth_local_webserver'])
 	if not path.isdir(args.path):raise
-	pprint(args)
-	api = Api()
-	pprint(api)
+
+	api = Api(flags=args)
+	# for i in Api.walk(args.path):
+		# print(i)
+	print(api.dropbox())
 
 
 
