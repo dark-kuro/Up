@@ -13,9 +13,11 @@ def main():
 	foo = api.foo()
 	for i in Api.walk(args.path):
 		print(i)
-		a = Api.ul(foo, i)
+		# a = Api.ul(foo, i)
+		a = api.up(i)
 		print(a)
-		break
+		pprint(a.json())
+		# break
 	# print(api.dropbox())
 
 
